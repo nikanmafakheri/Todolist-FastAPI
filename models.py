@@ -1,7 +1,8 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String , MetaData
 from sqlalchemy.ext.declarative import declarative_base
+from database import engine
 
-Base = declarative_base
+Base = declarative_base()
 
 class Item(Base):
   __tablename__ = "items"
@@ -10,3 +11,4 @@ class Item(Base):
   description = Column(String, index = True)
   
   Base.metadata.create_all(bind=engine)
+  
