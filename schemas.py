@@ -1,9 +1,18 @@
 from pydantic import BaseModel
+from typing import Optional
 
-class ItemSchema(BaseModel):
-  id : int
+class ItemBase(BaseModel):
   name : str 
   description : str
-  
-  class config:
-    orm_mode = True
+ 
+class ItemCreate(ItemBase):
+  pass
+
+class ItemRead(ItemBase):
+  id : int
+  class Config:
+    orm_mode = True  
+
+class ItemUpdate(ItemBase):
+  name : Optional[str] = None
+  description : Optional[str] = None
